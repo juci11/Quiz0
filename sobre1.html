@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo do Canva</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Para garantir que o vídeo ocupe a tela inteira */
+        }
+        .skip-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="myVideo" src="yyo.mp4" type="video/mp4" loop></video>
+    </div>
+    <button class="skip-button" id="skipButton">Pular</button>
+
+    <script>
+        window.addEventListener('load', function() {
+            var video = document.getElementById('myVideo');
+            video.play();
+        });
+
+        document.addEventListener('click', function() {
+            var video = document.getElementById('myVideo');
+            if (video.paused) {
+                video.play();
+            }
+        });
+
+        document.getElementById('skipButton').addEventListener('click', function() {
+            var video = document.getElementById('myVideo');
+            video.pause();
+            window.location.href = "fase1.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    text-align: center;
+    background: url("./po.jpg");
+    background-size: cover;
+}
+
+h1 {
+    color: rgb(57, 31, 209);
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+#board {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    background: url(".");
+    background-size: cover;
+    border: 3px solid white;
+    border-radius: 25px;
+}
+
+#board div {
+    width: 160px;
+    height: 150px;
+    background-image: url("./vd-transformed.png");
+    background-size: cover;
+}
+
+#board div img {
+    width: 100px;
+    height: 100px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+.palavra-correta, .palavra-incorreta {
+    font-weight: bold; /* Deixa o texto em negrito */
+    color: rgb(0, 0, 0); /* Cor preta */
+    text-shadow: none; /* Remove completamente a sombra de texto */
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Baú</title>
+    <link rel="stylesheet" href="entrada.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" onclick="flipCard(this, 'Fase 1')">
+            <div class="front">
+                <img src="chest-closed.png" alt="Baú Fechado">
+            </div>
+            <div class="back">
+                <a class="btn-red" href="fase1.html">Fase 1</a>
+                <img src="chest-open.png" alt="Baú Aberto">
+            </div>
+        </div>
+        <div class="card" onclick="flipCard(this, 'Fase 2')">
+            <div class="front">
+                <img src="chest-closed.png" alt="Baú Fechado">
+            </div>
+            <div class="back">
+                <a class="btn-red" href="fase2.html">Fase 2</a>
+                <img src="chest-open.png" alt="Baú Aberto">
+            </div>
+        </div>
+        <div class="card" onclick="flipCard(this, 'Fase 3')">
+            <div class="front">
+                <img src="chest-closed.png" alt="Baú Fechado">
+            </div>
+            <div class="back">
+                <a class="btn-red" href="fase3.html">Fase 3</a>
+                <img src="chest-open.png" alt="Baú Aberto">
+            </div>
+        </div>
+    </div>
+    <!-- Script na página de entrada para verificar o progresso -->
+<script src="entrada.js">
+    // Verificar o progresso do usuário
+    if (localStorage.getItem('fase1Completa')) {
+        document.getElementById('bau1').classList.add('desbloqueado');
+    }
+    if (localStorage.getItem('fase2Completa')) {
+        document.getElementById('bau2').classList.add('desbloqueado');
+    }
+    if (localStorage.getItem('fase3Completa')) {
+        document.getElementById('bau3').classList.add('desbloqueado');
+    }
+</script>
+</body>
+</html>
