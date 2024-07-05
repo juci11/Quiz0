@@ -3,200 +3,269 @@
 <html>
 
 <head>
-  <title>Jogo da Forca</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url("c5.jpg"); 
-      background-size: cover;
-      background-position: center;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .game-container {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      position: relative; /* Para posicionamento dos botões */
-    }
-    #word-display {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    #wrong-letters {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    #input-letter {
-      font-size: 18px;
-      padding: 5px;
-      margin-right: 10px;
-    }
-    #guess-button {
-      font-size: 18px;
-      padding: 5px 10px;
-    }
-    #life-display {
-      font-size: 18px;
-      margin-top: 20px;
-    }
-    #guessed-words {
-      font-size: 18px;
-      margin-top: 20px;
-    }
-    #next-phase-button {
-      display: none; /* Inicia escondido */
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 18px;
-      padding: 15px 30px;
-      background-color: #ffffff;
-      color: #000000;
-      border-radius: 8px;
-    }
-    #start-music-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 18px;
-      padding: 15px 30px;
-      background-color: #ffffff;
-      color: #000000;
-      border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Botão para iniciar música -->
-  <button id="start-music-button" onclick="startBackgroundMusic()">Iniciar Música</button>
 
-  <!-- Elemento de áudio para a música de fundo -->
-  <audio id="background-music" autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
-  </audio>
+  <title>Jogo da Forca</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background-image: url("ti.jpg"); 
+
+      background-size: cover;
+
+      background-position: center;
+
+      margin: 0;
+
+      padding: 0;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      height: 100vh;
+
+    }
+
+    .game-container {
+
+      background-color: rgba(255, 255, 255, 0.9);
+
+      padding: 20px;
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+    #word-display {
+
+      font-size: 24px;
+
+      font-weight: bold;
+
+      margin-bottom: 20px;
+
+    }
+
+    #wrong-letters {
+
+      font-size: 18px;
+
+      margin-bottom: 20px;
+
+    }
+
+    #input-letter {
+
+      font-size: 18px;
+
+      padding: 5px;
+
+      margin-right: 10px;
+
+    }
+
+    #guess-button {
+
+      font-size: 18px;
+
+      padding: 5px 10px;
+
+    }
+
+    #life-display {
+
+      font-size: 18px;
+
+      margin-top: 20px;
+
+    }
+
+    #guessed-words {
+
+      font-size: 18px;
+
+      margin-top: 20px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
 
   <div class="game-container">
+
     <div id="word-display"></div>
+
     <div id="wrong-letters">Letras erradas: </div>
+
     <input type="text" id="input-letter" maxlength="1" placeholder="Digite uma letra">
+
     <button id="guess-button">Chutar</button>
+
     <div id="life-display">Chances restantes: 15</div>
+
     <div id="guessed-words">Palavras acertadas: </div>
-    <button id="next-phase-button" onclick="goToNextPhase()">Próxima Fase</button>
+
   </div>
 
+
+
   <script>
-    const words = ["JAGUATIRICA", "LEÃO", "TIGRE", "ELEFANTE", "GIRAFA", "RINOCERONTE", "HIPOPÓTAMO", "ZEBRA", "CANGURU", "COALA", "ORNITORRINCO", "PANDA", "URSO", "LOBO", "RAPOSA", "ÁGUIA", "FALCÃO", "CORUJA", "PAPAGAIO", "TARTARUGA", "CROCODILO",
-      "GOLFINHO", "BALEIA", "TUBARÃO", "POLVO", "PINGUIM", "FOCA", "PELICANO", "ARARA", "TUCANO", "JACARÉ", "SURICATE", "GORILA", "MACACO", "CHIMPANZÉ",  "CABRA", "OVELHA", "PORCO", "CAVALO", "BURRO",
-      "JUMENTO", "TOURO", "VACA", "BÚFALO", "GALO", "GALINHA", "PATO",  "GANSO", "PAVÃO", "AVESTRUZ", "CISNE", "CODORNA", "POMBA",  "BEIJA-FLOR", "ANDORINHA", "PARDAL", "CANÁRIO"];
+
+    const words = ["JAGUATIRICA", "LEAO", "TIGRE", "ELEFANTE", "GIRAFA", "RINOCERONTE", "HIPOPOTAMO", "ZEBRA", "CANGURU", "COALA", "ORNITORRINCO", "PANDA", "URSO", "LOBO", "RAPOSA", "AGUIA", "FALCAO", "CORUJA", "PAPAGAIO", "TARTARUGA", "CROCODILO",
+
+      "GOLFINHO", "BALEIA", "TUBARAO", "POLVO", "PINGUIM", "FOCA", "PELICANO", "ARARA", "TUCANO", "JACARE", "SURICATE", "GORILA", "MACACO", "CHIMPANZE",  "CABRA", "OVELHA", "PORCO", "CAVALO", "BURRO",
+
+      "JUMENTO", "TOURO", "VACA", "GALO", "GALINHA", "PATO",  "GANSO", "PAVAO", "AVESTRUZ", "CISNE", "CODORNA", "POMBA",  "BEIJA-FLOR", "ANDORINHA", "PARDAL", "CALOPSITA", "PERIQUITO", "CARANGUEJO", "SIRI", "LAGOSTA"];
+
+
 
     let selectedWord;
+
     let wordDisplay;
+
     let wrongLetters = [];
+
     let lives;
+
     let guessedWords = [];
-    let correctGuessCount = 0;
+
+
 
     function startGame() {
+
       selectedWord = words[Math.floor(Math.random() * words.length)];
+
       wordDisplay = selectedWord.replace(/./g, "_ ");
+
       wrongLetters = [];
+
       lives = 15; // Mudança para 15 chances
+
       document.getElementById("word-display").textContent = wordDisplay;
+
       document.getElementById("wrong-letters").textContent = "Letras erradas: ";
+
       document.getElementById("life-display").textContent = `Chances restantes: ${lives}`;
+
       document.getElementById("input-letter").value = "";
+
       document.getElementById("guessed-words").textContent = `Descubra os ANIMAIS: ${guessedWords.join(", ")}`;
+
     }
+
+
 
     function guess() {
+
       const letter = document.getElementById("input-letter").value.toUpperCase();
+
       if (letter.length !== 1 || !isNaN(parseInt(letter))) {
+
         alert("Por favor, digite apenas uma letra.");
+
         return;
+
       }
+
+
 
       if (selectedWord.includes(letter)) {
+
         let newWordDisplay = "";
+
         for (let i = 0; i < selectedWord.length; i++) {
+
           if (selectedWord[i] === letter) {
+
             newWordDisplay += letter + " ";
+
           } else {
+
             newWordDisplay += wordDisplay[i * 2] + " ";
+
           }
+
         }
+
         wordDisplay = newWordDisplay;
+
         document.getElementById("word-display").textContent = wordDisplay;
+
         if (!wordDisplay.includes("_")) {
+
           alert("Você venceu!");
+
           guessedWords.push(selectedWord);
+
           document.getElementById("guessed-words").textContent = `DESCUBRA O ANIMAL ${guessedWords.join(", ")}`;
-          correctGuessCount++;
-          if (correctGuessCount === 5) {
-            showNextPhaseButton();
-          }
+
           startGame();
+
         }
+
       } else {
+
         if (!wrongLetters.includes(letter)) {
+
           wrongLetters.push(letter);
+
           document.getElementById("wrong-letters").textContent = `Letras erradas: ${wrongLetters.join(", ")}`;
+
           lives--;
+
           document.getElementById("life-display").textContent = `Chances restantes: ${lives}`;
+
           if (lives === 0) {
+
             alert(`Você perdeu! A palavra era "${selectedWord}".`);
+
             startGame();
+
           }
+
         } else {
+
           alert("Você já tentou essa letra. Tente outra.");
+
         }
+
       }
+
       document.getElementById("input-letter").value = "";
+
     }
 
-    function showNextPhaseButton() {
-      let nextPhaseButton = document.getElementById("next-phase-button");
-      if (nextPhaseButton) {
-        nextPhaseButton.style.display = "block";
-      }
-    }
 
-    function hideNextPhaseButton() {
-      let nextPhaseButton = document.getElementById("next-phase-button");
-      if (nextPhaseButton) {
-        nextPhaseButton.style.display = "none";
-      }
-    }
-
-    function startBackgroundMusic() {
-      let backgroundMusic = document.getElementById("background-music");
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-      }
-    }
-
-    function goToNextPhase() {
-      // Redirecionar para a próxima fase após acertar 5 animais
-      alert("Parabéns! Você avançou para a próxima fase!");
-      window.location.href = "";
-    }
 
     document.getElementById("guess-button").addEventListener("click", guess);
+
     document.addEventListener("keyup", (event) => {
+
       if (event.key === "Enter") {
+
         guess();
+
       }
+
     });
 
+
+
     startGame();
+
   </script>
+
 </body>
+
 </html>
